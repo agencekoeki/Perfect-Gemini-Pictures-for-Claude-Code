@@ -32,7 +32,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "== Installation de perfect-geminini-pictures-for-claude-code =="
+echo "== Installation de pgp (perfect-geminini-pictures-for-claude-code) =="
 
 if [[ $SKIP_PIP -eq 0 ]]; then
     if ! command -v python3 &>/dev/null; then

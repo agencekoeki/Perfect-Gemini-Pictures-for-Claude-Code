@@ -1,6 +1,6 @@
 {
-  "name": "perfect-geminini-pictures-for-claude-code",
-  "version": "0.1.0",
+  "name": "pgp",
+  "version": "0.1.1",
   "description": "Pipeline cognitif complet pour générer des images via l'API Gemini avec rendu vraie photo humaine",
   "author": {
     "name": "Kōeki Agency",

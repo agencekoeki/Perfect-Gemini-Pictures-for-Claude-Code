@@ -4,6 +4,13 @@ Toutes les modifications notables de ce plugin sont documentées dans ce fichier
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.1] - 2026-04-21
+
+### Modifié
+
+- Renommage du slug de plugin de `perfect-geminini-pictures-for-claude-code` vers `pgp` dans `.claude-plugin/plugin.json` pour raccourcir les invocations (ex : `/pgp:pgp-full` au lieu de `/perfect-geminini-pictures-for-claude-code:pgp-full`). Nom long conservé comme titre dans README.
+- Mise à jour des instructions d'installation dans README et CLAUDE.md.
+
 ## [0.1.0] - 2026-04-21
 
 ### Ajouté

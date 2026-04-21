@@ -1,6 +1,8 @@
-# perfect-geminini-pictures-for-claude-code
+# pgp — perfect-geminini-pictures-for-claude-code
 
 > Générer des images Gemini qui ressemblent vraiment à des photos.
+
+Slug du plugin dans Claude Code : **`pgp`**. Invocation d'une skill : `/pgp:pgp-full`.
 
 Plugin Claude Code qui orchestre un pipeline cognitif complet en 7 phases
 pour produire, à partir de l'API Gemini (Nano Banana / Nano Banana 2 / Nano
@@ -77,7 +79,7 @@ Depuis Claude Code :
 
 ```
 /plugin marketplace add <url ou chemin local vers ce dossier>
-/plugin install perfect-geminini-pictures-for-claude-code
+/plugin install pgp
 ```
 
 Ou manuellement en copiant le dossier dans `~/.claude/plugins/`.
@@ -111,19 +113,19 @@ Obtiens une clé API sur [aistudio.google.com/apikey](https://aistudio.google.co
 ### Mode avec produit
 
 ```bash
-claude /pgp-full "unboxing batterie Bluetti AC200 dans van aménagé matin" --product-image ./bluetti.jpg
+claude /pgp:pgp-full "unboxing batterie Bluetti AC200 dans van aménagé matin" --product-image ./bluetti.jpg
 ```
 
 ### Mode sans produit
 
 ```bash
-claude /pgp-full "portrait femme buvant café matinal style reel Instagram"
+claude /pgp:pgp-full "portrait femme buvant café matinal style reel Instagram"
 ```
 
 ### Rejouer un exemple pré-rempli
 
 ```bash
-claude /pgp-full --from-brief examples/portrait-humain-sans-produit/brief.json
+claude /pgp:pgp-full --from-brief examples/portrait-humain-sans-produit/brief.json
 ```
 
 Chaque invocation :

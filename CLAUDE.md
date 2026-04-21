@@ -4,7 +4,9 @@ Instructions pour toute session Claude Code travaillant sur ce repo.
 
 ## Projet
 
-Plugin Claude Code `perfect-geminini-pictures-for-claude-code` qui génère des images Gemini avec un rendu "vraie photo" via un pipeline cognitif en 7 phases (brief → moodboard → shot-plan → prompt-forge → generate → postprocess → qa).
+Plugin Claude Code `pgp` (nom long : `perfect-geminini-pictures-for-claude-code`) qui génère des images Gemini avec un rendu "vraie photo" via un pipeline cognitif en 7 phases (brief → moodboard → shot-plan → prompt-forge → generate → postprocess → qa).
+
+Slug court volontaire pour raccourcir les invocations : `/pgp:pgp-full` au lieu du nom complet.
 
 Voir [README.md](README.md) pour la vue utilisateur complète.
 
@@ -51,7 +53,7 @@ python tests/test_gemini_mock.py
 python -c "import json, pathlib; [json.load(open(p, encoding='utf-8')) for p in pathlib.Path('.').rglob('*.json') if '.git' not in str(p)]"
 
 # Lancer le pipeline complet en mode draft
-claude /perfect-geminini-pictures-for-claude-code:pgp-full "<description>"
+claude /pgp:pgp-full "<description>"
 ```
 
 ## Points d'attention Windows
