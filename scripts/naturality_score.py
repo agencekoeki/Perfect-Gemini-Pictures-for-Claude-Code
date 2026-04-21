@@ -41,7 +41,7 @@ def compute_noise_coherence(np_mod, arr) -> float:
     from scipy.ndimage import gaussian_filter
     smooth = gaussian_filter(gray, sigma=1.2)
     residual = gray - smooth
-    shifted = np.roll(residual, 1, axis=0)
+    shifted = np_mod.roll(residual, 1, axis=0)
     denom = np_mod.sqrt(np_mod.sum(residual**2) * np_mod.sum(shifted**2)) + 1e-9
     corr = float(np_mod.sum(residual * shifted) / denom)
     return max(0.0, min(1.0, (corr + 0.05) * 2.0))

@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(chmod +x scripts/*.sh scripts/*.py)",
-      "Bash(chmod +x check-deps.sh install.sh)"
+      "Bash(chmod +x check-deps.sh install.sh)",
+      "Bash(chmod +x tests/test_scripts.sh)",
+      "Bash(bash tests/test_scripts.sh)"
     ]
   }
 }

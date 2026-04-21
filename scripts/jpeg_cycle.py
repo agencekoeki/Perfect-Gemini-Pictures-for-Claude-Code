@@ -53,7 +53,7 @@ def jpeg_cycle(input_path: Path, output_path: Path,
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description="Cycle JPEG→PNG→JPEG pour naturalité compression.")
+    p = argparse.ArgumentParser(description="Cycle JPEG-PNG-JPEG pour naturalite compression.")
     p.add_argument("--input", required=True)
     p.add_argument("--output", required=True)
     p.add_argument("--q1", type=int, default=92)
