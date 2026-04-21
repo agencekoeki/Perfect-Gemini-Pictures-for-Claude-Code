@@ -1,0 +1,42 @@
+{
+  "mode": "without-product",
+  "product": null,
+  "scene": {
+    "environment": "cuisine d'appartement parisien haussmannien, lumière naturelle",
+    "specific_elements": [
+      "plan de travail marbre blanc veiné",
+      "fenêtre grande avec volets intérieurs blancs",
+      "mug céramique artisanale beige",
+      "cafetière italienne Bialetti en inox",
+      "linge de cuisine en lin froissé"
+    ],
+    "time_of_day": "matin tôt 7h30",
+    "season": "automne",
+    "weather": "ciel voilé doux, lumière diffuse"
+  },
+  "subject_action": "femme trentenaire en chemise blanche oversize buvant sa première gorgée de café en regardant la fenêtre, cheveux en chignon lâche",
+  "story_beat": "instant suspendu, premier moment de calme avant la journée",
+  "platform": {
+    "target": "instagram-reel",
+    "aspect_ratio": "9:16",
+    "resolution": "2K"
+  },
+  "audience": "femmes actives urbaines 28-40, slow-living, bien-être",
+  "tone": [
+    "intime",
+    "matinal",
+    "doux",
+    "authentique",
+    "slow"
+  ],
+  "brand_cues": {
+    "logo_visibility": "aucun",
+    "brand_colors": []
+  },
+  "forbidden": [
+    "logos de marque",
+    "téléphones et écrans",
+    "maquillage visible marqué",
+    "vêtements colorés voyants"
+  ]
+}

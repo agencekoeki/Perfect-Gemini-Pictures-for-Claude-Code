@@ -1,0 +1,46 @@
+{
+  "mode": "with-product",
+  "product": {
+    "name": "Bluetti AC200 Max",
+    "reference_image_path": "./examples/bluetti-unboxing-van/input_product.jpg",
+    "key_features_to_preserve": [
+      "logo Bluetti sur la façade",
+      "écran LCD bleu",
+      "poignée noire",
+      "silhouette rectangulaire grise anthracite",
+      "prises visibles sur la face avant"
+    ]
+  },
+  "scene": {
+    "environment": "intérieur van aménagé en mode nomade",
+    "specific_elements": [
+      "plan de travail bois clair",
+      "fenêtre latérale avec rideau lin",
+      "plaid en laine neutre",
+      "mug céramique posé",
+      "carton ouvert sur le côté"
+    ],
+    "time_of_day": "matin 9h",
+    "season": "printemps",
+    "weather": "ensoleillé doux"
+  },
+  "subject_action": "main d'un adulte trentenaire retirant le dernier emballage mousse du carton, révélant l'appareil",
+  "story_beat": "moment de découverte paisible après arrivée sur le spot",
+  "platform": {
+    "target": "instagram-reel",
+    "aspect_ratio": "9:16",
+    "resolution": "2K"
+  },
+  "audience": "nomades digitaux 30-45, vanlifers, télétravailleurs outdoor",
+  "tone": ["authentique", "matinal", "chaleureux", "slow-life"],
+  "brand_cues": {
+    "logo_visibility": "lisible-sans-surexposition",
+    "brand_colors": ["#00529B"]
+  },
+  "forbidden": [
+    "logos concurrents",
+    "visages entiers reconnaissables",
+    "marques de téléphones visibles",
+    "texte sur l'emballage en anglais trop lisible"
+  ]
+}
