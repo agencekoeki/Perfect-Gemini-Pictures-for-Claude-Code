@@ -1,0 +1,93 @@
+{
+  "description": "Catalogue de films argentiques et leurs caractéristiques exploitables dans le prompt Gemini et le post-process G'MIC.",
+  "stocks": {
+    "kodak_portra_400": {
+      "display_name": "Kodak Portra 400",
+      "grain": "fin, crémeux",
+      "color_bias": "peau chaude et neutre, verts doux, rouges désaturés",
+      "contrast": "doux",
+      "dynamic_range": "très large",
+      "iso_native": 400,
+      "usage_typique": "mariage, portrait, lifestyle lumière naturelle",
+      "gmic_clut": "fuji_400h_portra_transition",
+      "prompt_tokens": "Kodak Portra 400, fine creamy grain, warm neutral skin tones, soft contrast, wide dynamic range"
+    },
+    "kodak_portra_160": {
+      "display_name": "Kodak Portra 160",
+      "grain": "très fin",
+      "color_bias": "peau légèrement crémeuse, palette pastel",
+      "contrast": "très doux",
+      "dynamic_range": "large",
+      "iso_native": 160,
+      "usage_typique": "portrait éditorial, studio naturel",
+      "gmic_clut": "portra_160",
+      "prompt_tokens": "Kodak Portra 160, ultra fine grain, pastel palette, creamy skin tones, soft editorial contrast"
+    },
+    "fujifilm_pro_400h": {
+      "display_name": "Fujifilm Pro 400H",
+      "grain": "fin, neutre",
+      "color_bias": "verts et cyans naturels, peau légèrement rosée",
+      "contrast": "doux",
+      "dynamic_range": "large",
+      "iso_native": 400,
+      "usage_typique": "mariage, lifestyle extérieur naturel, nature",
+      "gmic_clut": "fuji_pro_400h",
+      "prompt_tokens": "Fujifilm Pro 400H, fine neutral grain, natural greens and cyans, soft contrast, airy feel"
+    },
+    "kodak_gold_200": {
+      "display_name": "Kodak Gold 200",
+      "grain": "fin à moyen, chaleureux",
+      "color_bias": "jaunes dorés, rouges saturés, ambiance nostalgique",
+      "contrast": "moyen",
+      "dynamic_range": "standard",
+      "iso_native": 200,
+      "usage_typique": "nostalgie années 90, vacances, famille",
+      "gmic_clut": "kodak_gold_200",
+      "prompt_tokens": "Kodak Gold 200, warm golden grain, saturated reds and yellows, vintage 90s summer look"
+    },
+    "cinestill_800t": {
+      "display_name": "CineStill 800T",
+      "grain": "moyen, visible",
+      "color_bias": "bleus cyan forts, halos rouges autour des lumières (halation)",
+      "contrast": "élevé",
+      "dynamic_range": "moyen",
+      "iso_native": 800,
+      "usage_typique": "scènes nocturnes, néons urbains, ambiance cinématique",
+      "gmic_clut": "cinestill_800t",
+      "prompt_tokens": "CineStill 800T, visible tungsten grain, red halation around light sources, cyan shadows, cinematic night look"
+    },
+    "ilford_hp5": {
+      "display_name": "Ilford HP5 Plus",
+      "grain": "moyen à marqué",
+      "color_bias": "noir et blanc, contrasté",
+      "contrast": "élevé",
+      "dynamic_range": "large",
+      "iso_native": 400,
+      "usage_typique": "reportage noir et blanc, street, documentaire",
+      "gmic_clut": "ilford_hp5",
+      "prompt_tokens": "Ilford HP5 Plus black and white, visible silver grain, high contrast, documentary reportage feel"
+    },
+    "fujifilm_velvia_50": {
+      "display_name": "Fujifilm Velvia 50",
+      "grain": "très fin",
+      "color_bias": "saturation élevée, verts profonds, bleus intenses",
+      "contrast": "élevé",
+      "dynamic_range": "étroit",
+      "iso_native": 50,
+      "usage_typique": "paysage, nature, panorama ensoleillé",
+      "gmic_clut": "velvia_50",
+      "prompt_tokens": "Fujifilm Velvia 50, fine grain, saturated greens and blues, high contrast landscape look"
+    },
+    "polaroid_600": {
+      "display_name": "Polaroid 600 instant",
+      "grain": "texture chimique instantanée",
+      "color_bias": "dominante cyan-verte, peau légèrement délavée",
+      "contrast": "faible, tons pastels",
+      "dynamic_range": "étroit",
+      "iso_native": 640,
+      "usage_typique": "souvenirs instantanés, années 80-90, ambiance intime",
+      "gmic_clut": "polaroid_600",
+      "prompt_tokens": "Polaroid 600 instant film, chemical texture, washed cyan-green cast, soft pastel contrast, vintage intimate feel"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "iphone_15_pro",
+  "display_name": "Apple iPhone 15 Pro",
+  "exif": {
+    "Make": "Apple",
+    "Model": "iPhone 15 Pro",
+    "LensMake": "Apple",
+    "LensModel": "iPhone 15 Pro back triple camera 6.86mm f/1.78",
+    "Software": "17.4.1",
+    "FocalLength": "6.86 mm",
+    "FocalLengthIn35mmFormat": "24 mm",
+    "FNumber": 1.78,
+    "MaxApertureValue": 1.78,
+    "ExposureTime": "1/120",
+    "ISO": 400,
+    "ExposureProgram": "Program AE",
+    "MeteringMode": "Multi-segment",
+    "WhiteBalance": "Auto",
+    "ColorSpace": "sRGB",
+    "Flash": "Off, Did not fire",
+    "Orientation": "Horizontal (normal)",
+    "ResolutionUnit": "inches",
+    "XResolution": 72,
+    "YResolution": 72,
+    "YCbCrPositioning": "Centered",
+    "ExposureMode": "Auto",
+    "SceneCaptureType": "Standard",
+    "SubjectDistanceRange": "Close"
+  },
+  "notes": "Téléphone grand public, photo computationnelle Apple. Utilise pour UGC, reel, snap lifestyle."
+}

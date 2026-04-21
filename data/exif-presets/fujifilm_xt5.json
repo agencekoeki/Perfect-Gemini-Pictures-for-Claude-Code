@@ -1,0 +1,31 @@
+{
+  "id": "fujifilm_xt5",
+  "display_name": "Fujifilm X-T5",
+  "exif": {
+    "Make": "FUJIFILM",
+    "Model": "X-T5",
+    "LensMake": "FUJIFILM",
+    "LensModel": "XF35mmF1.4 R",
+    "Software": "Ver1.02",
+    "FocalLength": "35 mm",
+    "FocalLengthIn35mmFormat": "53 mm",
+    "FNumber": 2.0,
+    "MaxApertureValue": 1.4,
+    "ExposureTime": "1/180",
+    "ISO": 400,
+    "ExposureProgram": "Aperture-priority AE",
+    "MeteringMode": "Multi-segment",
+    "WhiteBalance": "Auto",
+    "ColorSpace": "sRGB",
+    "Flash": "Off, Did not fire",
+    "Orientation": "Horizontal (normal)",
+    "ResolutionUnit": "inches",
+    "XResolution": 240,
+    "YResolution": 240,
+    "ExposureMode": "Auto",
+    "SceneCaptureType": "Standard",
+    "FilmMode": "Classic Chrome",
+    "DynamicRange": "Auto"
+  },
+  "notes": "APS-C Fujifilm, simulations de films intégrées (Classic Chrome, Velvia, Astia). Utilise pour street, lifestyle quotidien, documentaire."
+}

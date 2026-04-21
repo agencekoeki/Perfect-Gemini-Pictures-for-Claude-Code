@@ -1,0 +1,30 @@
+{
+  "id": "canon_r5",
+  "display_name": "Canon EOS R5",
+  "exif": {
+    "Make": "Canon",
+    "Model": "Canon EOS R5",
+    "LensMake": "Canon",
+    "LensModel": "RF85mm F1.2 L USM",
+    "Software": "Firmware Version 1.10.0",
+    "FocalLength": "85 mm",
+    "FocalLengthIn35mmFormat": "85 mm",
+    "FNumber": 1.8,
+    "MaxApertureValue": 1.2,
+    "ExposureTime": "1/400",
+    "ISO": 200,
+    "ExposureProgram": "Aperture-priority AE",
+    "MeteringMode": "Evaluative",
+    "WhiteBalance": "Auto",
+    "ColorSpace": "sRGB",
+    "Flash": "Off, Did not fire",
+    "Orientation": "Horizontal (normal)",
+    "ResolutionUnit": "inches",
+    "XResolution": 72,
+    "YResolution": 72,
+    "ExposureMode": "Auto",
+    "SceneCaptureType": "Portrait",
+    "PictureStyle": "Standard"
+  },
+  "notes": "Plein format Canon mirrorless. 85mm f/1.2 L pour portrait cinématique. Utilise pour portrait premium, beauté, éditorial."
+}

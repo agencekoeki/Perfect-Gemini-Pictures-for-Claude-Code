@@ -1,0 +1,32 @@
+{
+  "id": "sony_a7iv",
+  "display_name": "Sony Alpha 7 IV",
+  "exif": {
+    "Make": "SONY",
+    "Model": "ILCE-7M4",
+    "LensMake": "SONY",
+    "LensModel": "FE 24-70mm F2.8 GM II",
+    "Software": "ILCE-7M4 v2.00",
+    "FocalLength": "50 mm",
+    "FocalLengthIn35mmFormat": "50 mm",
+    "FNumber": 2.8,
+    "MaxApertureValue": 2.8,
+    "ExposureTime": "1/250",
+    "ISO": 400,
+    "ExposureProgram": "Aperture-priority AE",
+    "MeteringMode": "Multi-segment",
+    "WhiteBalance": "Auto",
+    "ColorSpace": "sRGB",
+    "Flash": "Off, Did not fire",
+    "Orientation": "Horizontal (normal)",
+    "ResolutionUnit": "inches",
+    "XResolution": 350,
+    "YResolution": 350,
+    "ExposureMode": "Auto",
+    "SceneCaptureType": "Standard",
+    "ContrastMode": "Normal",
+    "SaturationMode": "Normal",
+    "SharpnessMode": "Normal"
+  },
+  "notes": "Hybride plein format Sony. Plage 24-70 f/2.8 GM II. Utilise pour lifestyle pro, éditorial, mariage."
+}
