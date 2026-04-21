@@ -86,13 +86,21 @@ Ou manuellement en copiant le dossier dans `~/.claude/plugins/`.
 
 ## 4. Configuration
 
-Crée un `.env` à la racine du projet (ignoré par git) :
+Crée ton `.env` local à partir du template fourni :
 
 ```bash
-GEMINI_API_KEY=xxxx
-PGP_DEFAULT_MODE=draft   # optionnel, draft|final
-PGP_DATA_DIR=             # optionnel, override du dossier data
+cp .env.example .env
 ```
+
+Puis édite `.env` et remplis ta vraie clé API :
+
+```bash
+GEMINI_API_KEY=AIzaSy...       # obligatoire
+PGP_DEFAULT_MODE=draft          # optionnel, draft|final
+PGP_DATA_DIR=                   # optionnel, override du dossier data
+```
+
+**Sécurité** : le `.env` est ignoré par git (voir `.gitignore` ligne 6). Il ne sera jamais poussé, même avec `git add -A`. Seul `.env.example` (sans clé réelle) est versionné, comme template pour les nouveaux clones.
 
 Obtiens une clé API sur [aistudio.google.com/apikey](https://aistudio.google.com/apikey). Elle est gratuite pour les premiers essais, tarifée ensuite à l'image (voir section 12).
 
