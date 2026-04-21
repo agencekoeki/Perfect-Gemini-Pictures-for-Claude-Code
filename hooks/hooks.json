@@ -1,0 +1,17 @@
+{
+  "description": "Auto-cleanup des fichiers temporaires plus vieux que 24h dans .pgp-session/stages/ après chaque exécution Bash du pipeline.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "find ./.pgp-session/stages -type f -mtime +1 -delete 2>/dev/null || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
