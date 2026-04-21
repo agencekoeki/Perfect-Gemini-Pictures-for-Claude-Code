@@ -62,6 +62,27 @@ def compute_texture_variance(np_mod, arr) -> float:
     return max(0.0, min(1.0, coef_var / 1.5))
 
 
+def compute_luminance_quality(np_mod, arr) -> tuple[float, float]:
+    """Mesure l'exposition globale. Retourne (score, mean_luminance).
+
+    Plage saine pour une photo naturelle : mean_luminance dans [0.32, 0.68]
+    (normalisée 0-1). Sous 0.32 l'image est trop sombre (cascade post-process
+    trop agressive, ou scène sous-exposée suspecte). Au-dessus de 0.68 l'image
+    est cramée.
+
+    Score 1.0 dans la zone saine, dégradation linéaire en dehors.
+    """
+    gray = 0.2126 * arr[:, :, 0] + 0.7152 * arr[:, :, 1] + 0.0722 * arr[:, :, 2]
+    mean_lum = float(np_mod.mean(gray))
+    if 0.32 <= mean_lum <= 0.68:
+        score_val = 1.0
+    elif mean_lum < 0.32:
+        score_val = max(0.0, mean_lum / 0.32)
+    else:
+        score_val = max(0.0, (1.0 - mean_lum) / 0.32)
+    return round(score_val, 3), round(mean_lum, 3)
+
+
 def read_exif(input_path: Path) -> dict:
     try:
         res = subprocess.run(
@@ -122,15 +143,20 @@ def score(input_path: Path) -> dict:
     fourier = run_fourier(input_path)
     noise = compute_noise_coherence(np, arr)
     texture = compute_texture_variance(np, arr)
+    luminance_score, mean_luminance = compute_luminance_quality(np, arr)
     exif = read_exif(input_path)
     exif_present_score, exif_coherence = compute_exif_scores(exif)
 
+    # Pondération rééquilibrée : on ajoute luminance (20%), on réduit fourier
+    # et texture en conséquence. Luminance est critique car une image sur/sous-exposée
+    # est visuellement inutilisable, même si ses stats sont parfaites.
     weighted = (
-        fourier * 0.30
-        + noise * 0.20
-        + exif_present_score * 0.15
-        + exif_coherence * 0.15
-        + texture * 0.20
+        fourier * 0.25
+        + noise * 0.17
+        + exif_present_score * 0.10
+        + exif_coherence * 0.10
+        + texture * 0.18
+        + luminance_score * 0.20
     )
     total = int(round(weighted * 100))
 
@@ -139,16 +165,33 @@ def score(input_path: Path) -> dict:
 
     if fourier < 0.6:
         warnings.append(f"Fourier score bas ({fourier:.2f}) : pattern VAE détecté.")
-        suggestions.append("Relancer `scripts/downsample_up.py --passes 2 --intermediate-ratio 0.45`.")
+        suggestions.append("Relancer `.claude/scripts/downsample_up.py --passes 2 --intermediate-ratio 0.45`.")
     if noise < 0.35:
         warnings.append(f"Bruit trop uniforme/absent ({noise:.2f}).")
-        suggestions.append("Relancer `scripts/sensor_noise.py --intensity high`.")
+        suggestions.append("Relancer `.claude/scripts/sensor_noise.py --intensity high`.")
     if texture < 0.3:
         warnings.append(f"Variance de texture faible ({texture:.2f}) : zones trop lisses.")
         suggestions.append("Re-run grain film avec --intensity plus élevée, ou ajouter un pass sensor_noise.")
+    if luminance_score < 0.7:
+        if mean_luminance < 0.32:
+            warnings.append(
+                f"Image trop sombre (luminance moyenne {mean_luminance:.2f}, score {luminance_score:.2f}) : "
+                "cascade post-process probablement trop agressive."
+            )
+            suggestions.append(
+                "Baisser vignette à low, passer color_grade_mood en neutral-editorial, "
+                "ou régénérer sans cascade darkening."
+            )
+        else:
+            warnings.append(
+                f"Image trop claire/cramée (luminance moyenne {mean_luminance:.2f}, score {luminance_score:.2f})."
+            )
+            suggestions.append(
+                "Ajouter un pass color_grade moody-cinematic, ou réduire l'exposition Gemini avec un prompt explicite."
+            )
     if not exif:
         warnings.append("Aucune métadonnée EXIF détectée.")
-        suggestions.append("Relancer `scripts/exif_inject.sh` avec le bon preset caméra.")
+        suggestions.append("Relancer `.claude/scripts/exif_inject.sh` avec le bon preset caméra (installer exiftool si absent).")
     elif exif_coherence < 0.7:
         warnings.append(f"Métadonnées EXIF incohérentes ({exif_coherence:.2f}).")
         suggestions.append("Vérifier le preset EXIF, en particulier ISO/FNumber/Software.")
@@ -161,6 +204,8 @@ def score(input_path: Path) -> dict:
             "exif_present": exif_present_score,
             "exif_coherence": exif_coherence,
             "texture_variance": round(texture, 3),
+            "luminance_score": luminance_score,
+            "mean_luminance": mean_luminance,
         },
         "warnings": warnings,
         "suggestions": suggestions,

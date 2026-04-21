@@ -72,14 +72,25 @@ if [[ ! -f "$PRESET_FILE" ]]; then
     exit 3
 fi
 
+skip_with_copy() {
+    local reason="$1"
+    echo "Avertissement : $reason — étape EXIF ignorée (image livrée sans métadonnées)." >&2
+    mkdir -p "$(dirname "$OUTPUT")"
+    if [[ "$INPUT" != "$OUTPUT" ]]; then
+        cp "$INPUT" "$OUTPUT"
+    fi
+    echo "Skip EXIF : $OUTPUT"
+    exit 0
+}
+
 if ! command -v exiftool &>/dev/null; then
-    echo "Erreur : exiftool introuvable. Installe-le (apt install libimage-exiftool-perl, brew install exiftool)." >&2
-    exit 4
+    echo "  Install exiftool : choco install exiftool (Windows) | brew install exiftool (macOS) | apt install libimage-exiftool-perl (Linux)" >&2
+    skip_with_copy "exiftool introuvable"
 fi
 
 if ! command -v jq &>/dev/null; then
-    echo "Erreur : jq introuvable. Installe-le (apt install jq, brew install jq)." >&2
-    exit 5
+    echo "  Install jq : choco install jq (Windows) | brew install jq (macOS) | apt install jq (Linux)" >&2
+    skip_with_copy "jq introuvable"
 fi
 
 mkdir -p "$(dirname "$OUTPUT")"

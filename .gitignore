@@ -1,5 +1,6 @@
-# Session de travail du pipeline
+# Session de travail du pipeline (y compris variantes e2e)
 .pgp-session/
+.pgp-session-*/
 output/
 
 # Clés API et secrets

@@ -27,7 +27,7 @@ def _eprint(msg: str) -> None:
 
 
 def _run(cmd: list[str]) -> None:
-    print(f"→ {' '.join(str(c) for c in cmd)}")
+    print(f"-> {' '.join(str(c) for c in cmd)}")
     res = subprocess.run(cmd, check=False)
     if res.returncode != 0:
         _eprint(f"Erreur : étape échouée avec code {res.returncode}. Commande : {cmd}")
@@ -42,13 +42,43 @@ def _resolve_script(name: str) -> str:
     return str(path)
 
 
+def _find_bash_windows() -> str:
+    """Sur Windows, `bash` par défaut = launcher WSL. On préfère Git Bash."""
+    candidates = [
+        r"C:\Program Files\Git\bin\bash.exe",
+        r"C:\Program Files\Git\usr\bin\bash.exe",
+        r"C:\Program Files (x86)\Git\bin\bash.exe",
+    ]
+    try:
+        res = subprocess.run(["git", "--exec-path"], capture_output=True, text=True, check=False)
+        if res.returncode == 0 and res.stdout.strip():
+            git_exec = Path(res.stdout.strip())
+            for parent in git_exec.parents:
+                for sub in ("bin/bash.exe", "usr/bin/bash.exe"):
+                    bash = parent / sub
+                    if bash.exists():
+                        candidates.insert(0, str(bash))
+    except (FileNotFoundError, OSError):
+        pass
+    for c in candidates:
+        if Path(c).exists():
+            return c
+    return "bash"  # fallback, utilisera WSL si installé
+
+
 def _python(name: str) -> list[str]:
     return [sys.executable, _resolve_script(name)]
 
 
+_WIN_BASH: str | None = None
+
+
 def _bash(name: str) -> list[str]:
+    global _WIN_BASH
     if os.name == "nt":
-        return ["bash", _resolve_script(name)]
+        if _WIN_BASH is None:
+            _WIN_BASH = _find_bash_windows()
+        return [_WIN_BASH, _resolve_script(name)]
     return [_resolve_script(name)]
 
 
@@ -137,7 +167,7 @@ def run_pipeline(
           "--focal", str(focal),
           "--shutter", shutter])
 
-    print(f"\n✓ Pipeline complet. Image finale : {output_image}")
+    print(f"\nOK Pipeline complet. Image finale : {output_image}")
 
 
 def build_parser() -> argparse.ArgumentParser:

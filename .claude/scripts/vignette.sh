@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
-# vignette.sh — Vignettage ImageMagick subtil.
+# vignette.sh — Vignettage ImageMagick subtil par radial-gradient.
+#
+# Strategie : on genere un mask radial white-center -> gray(EDGE_BRIGHTNESS%) aux coins
+# puis on multiplie l'original par ce mask. Garder EDGE_BRIGHTNESS proche de 100
+# pour un effet subtil. Valeurs :
+#   low    : coins a 92% de la luminance originale (tres discret)
+#   medium : coins a 82%
+#   high   : coins a 68%
 #
 # Usage :
-#   ./scripts/vignette.sh --input stage-4.png --output stage-5.png --strength low
+#   ./vignette.sh --input stage-4.png --output stage-5.png --strength low
 
 set -euo pipefail
 
@@ -12,7 +19,7 @@ STRENGTH="low"
 
 usage() {
     cat <<'USAGE'
-vignette.sh — Applique un vignettage subtil via ImageMagick.
+vignette.sh — Applique un vignettage subtil via radial-gradient ImageMagick.
 
 Options :
   --input PATH        Image d'entrée (requis).
@@ -43,9 +50,9 @@ if [[ ! -f "$INPUT" ]]; then
 fi
 
 case "$STRENGTH" in
-    low)    BLUR="0x80"; DARK="15" ;;
-    medium) BLUR="0x90"; DARK="25" ;;
-    high)   BLUR="0x100"; DARK="40" ;;
+    low)    EDGE="92" ;;
+    medium) EDGE="82" ;;
+    high)   EDGE="68" ;;
     *)
         echo "Erreur : --strength doit être low|medium|high" >&2
         exit 3
@@ -63,10 +70,15 @@ fi
 
 mkdir -p "$(dirname "$OUTPUT")"
 
+# Dimensions pour construire le mask a la bonne taille.
+DIM="$("$CONVERT" "$INPUT" -format "%wx%h" info:)"
+
+# Mask : blanc au centre -> gray(EDGE%) aux coins. Multiplie avec l'original.
+# Le multiply conserve l'image la ou le mask est 100% blanc, assombrit progressivement
+# vers les coins selon le gradient.
 "$CONVERT" "$INPUT" \
-    \( +clone -fill "gray(${DARK}%)" -colorize 100 \) \
-    \( -clone 0 -fill white -colorize 100 -shave 10%x10% -gravity center -extent "$("$CONVERT" "$INPUT" -format "%wx%h" info:)" -blur "$BLUR" \) \
+    \( -size "$DIM" radial-gradient:"white-gray(${EDGE}%)" \) \
     -compose multiply -composite \
     "$OUTPUT"
 
-echo "Vignettage appliqué (strength=$STRENGTH) : $OUTPUT"
+echo "Vignettage appliqué (strength=$STRENGTH, edges at ${EDGE}% brightness) : $OUTPUT"

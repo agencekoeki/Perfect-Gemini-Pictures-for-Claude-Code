@@ -42,10 +42,10 @@ if command -v magick &>/dev/null; then
 else
     check_cmd "convert" "ImageMagick requis (brew install imagemagick, apt install imagemagick)"
 fi
-check_cmd "gmic" "G'MIC requis pour émulation film (brew install gmic, apt install gmic)"
-check_cmd "exiftool" "exiftool requis (brew install exiftool, apt install libimage-exiftool-perl)"
+check_cmd "gmic" "G'MIC requis pour émulation film (choco install gmic / brew install gmic / apt install gmic)"
+check_cmd "exiftool" "exiftool requis (choco install exiftool / brew install exiftool / apt install libimage-exiftool-perl)"
 check_cmd "python3" "Python 3.10+ requis"
-check_cmd "jq" "jq requis (brew install jq, apt install jq)"
+check_cmd "jq" "jq requis (choco install jq / brew install jq / apt install jq)"
 check_cmd "git" "git 2.30+ requis"
 
 echo ""

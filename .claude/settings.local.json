@@ -11,7 +11,9 @@
       "Bash(mkdir -p .claude/skills .claude/agents)",
       "Bash(mv skills/* .claude/skills/)",
       "Bash(mv agents/*.md .claude/agents/)",
-      "Bash(bash .claude/tests/test_scripts.sh)"
+      "Bash(bash .claude/tests/test_scripts.sh)",
+      "Bash(chmod +x .claude/tests/test_e2e_real.sh)",
+      "Bash(bash .claude/tests/test_e2e_real.sh)"
     ]
   }
 }
