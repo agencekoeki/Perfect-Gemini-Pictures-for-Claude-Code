@@ -1,15 +1,10 @@
-# pgp — perfect-geminini-pictures-for-claude-code
+# perfect-geminini-pictures-for-claude-code
 
 > Générer des images Gemini qui ressemblent vraiment à des photos.
 
-Slug du plugin dans Claude Code : **`pgp`**. Invocation d'une skill : `/pgp:pgp-full`.
+Setup Claude Code **natif** (pas packagé en plugin distribuable) : tout le pipeline vit sous `.claude/`, les skills sont auto-découvertes quand tu ouvres Claude Code dans ce repo. Invocation directe sans préfixe : `/pgp-full`, `/pgp-brief`, etc.
 
-Plugin Claude Code qui orchestre un pipeline cognitif complet en 7 phases
-pour produire, à partir de l'API Gemini (Nano Banana / Nano Banana 2 / Nano
-Banana Pro), des images avec un rendu "vraie photo humaine" et non "image
-IA générique". Une chaîne de skills + scripts locaux (ImageMagick, G'MIC,
-exiftool, Python scientifique) qui reproduit ce qu'un photographe pro + un
-retoucheur feraient, y compris les imperfections qui signent le réel.
+Pipeline cognitif complet en 7 phases pour produire, à partir de l'API Gemini (Nano Banana / Nano Banana 2 / Nano Banana Pro), des images avec un rendu "vraie photo humaine" et non "image IA générique". Une chaîne de skills + scripts locaux (ImageMagick, G'MIC, exiftool, Python scientifique) qui reproduit ce qu'un photographe pro + un retoucheur feraient, y compris les imperfections qui signent le réel.
 
 ---
 
@@ -27,8 +22,8 @@ l'œil et en analyse forensique :
 
 Ce plugin adresse chaque point séparément, via :
 
-1. **Un prompt soigné**, débarrassé des tokens "IA" qui ramènent le modèle dans le cluster concept-art (`rules/anti-ai-vocabulary.md`).
-2. **Un shot-plan technique cohérent** (ISO, aperture, focale, éclairage), produit par un subagent `photographer` (`rules/camera-physics.md`, `rules/lighting-coherence.md`).
+1. **Un prompt soigné**, débarrassé des tokens "IA" qui ramènent le modèle dans le cluster concept-art (`.claude/rules/anti-ai-vocabulary.md`).
+2. **Un shot-plan technique cohérent** (ISO, aperture, focale, éclairage), produit par un subagent `photographer` (`.claude/rules/camera-physics.md`, `.claude/rules/lighting-coherence.md`).
 3. **Un post-processing cascade** qui casse les signatures VAE, injecte du bruit sensor crédible, applique une émulation film, une aberration chromatique radiale, du micro-vignettage, un cycle JPEG et des métadonnées EXIF de vraie caméra.
 4. **Un QA forensique** qui mesure la naturalité du résultat via FFT, cohérence du bruit et EXIF.
 
@@ -48,7 +43,7 @@ Ce plugin adresse chaque point séparément, via :
 Vérifie le tout via :
 
 ```bash
-./check-deps.sh
+./.claude/check-deps.sh
 ```
 
 ---
@@ -58,31 +53,26 @@ Vérifie le tout via :
 ```bash
 git clone https://github.com/koeki-agency/perfect-geminini-pictures-for-claude-code.git
 cd perfect-geminini-pictures-for-claude-code
-./install.sh
+./.claude/install.sh
 ```
 
 Le script `install.sh` :
 
-1. Installe les paquets Python (`requirements.txt`).
+1. Installe les paquets Python (`.claude/requirements.txt`).
 2. Rend les scripts exécutables.
-3. Lance `check-deps.sh` pour signaler les manques système.
+3. Lance `.claude/check-deps.sh` pour signaler les manques système.
 
 Option : télécharger un pack de CLUTs couleur libres (non fourni par défaut pour raisons de licence) :
 
 ```bash
-./install.sh --download-cluts
+./.claude/install.sh --download-cluts
 ```
 
-### Installer le plugin dans Claude Code
+### Utilisation dans Claude Code
 
-Depuis Claude Code :
+Aucune installation de plugin n'est requise. Ouvre simplement Claude Code dans ce dossier — les skills sous `.claude/skills/` sont auto-découvertes. Tu peux les invoquer directement : `/pgp-full`, `/pgp-brief`, etc.
 
-```
-/plugin marketplace add <url ou chemin local vers ce dossier>
-/plugin install pgp
-```
-
-Ou manuellement en copiant le dossier dans `~/.claude/plugins/`.
+Si Claude Code était déjà ouvert avant le clone, tape `/reload-plugins` pour rafraîchir.
 
 ---
 
@@ -113,19 +103,19 @@ Obtiens une clé API sur [aistudio.google.com/apikey](https://aistudio.google.co
 ### Mode avec produit
 
 ```bash
-claude /pgp:pgp-full "unboxing batterie Bluetti AC200 dans van aménagé matin" --product-image ./bluetti.jpg
+claude /pgp-full "unboxing batterie Bluetti AC200 dans van aménagé matin" --product-image ./bluetti.jpg
 ```
 
 ### Mode sans produit
 
 ```bash
-claude /pgp:pgp-full "portrait femme buvant café matinal style reel Instagram"
+claude /pgp-full "portrait femme buvant café matinal style reel Instagram"
 ```
 
 ### Rejouer un exemple pré-rempli
 
 ```bash
-claude /pgp:pgp-full --from-brief examples/portrait-humain-sans-produit/brief.json
+claude /pgp-full --from-brief .claude/examples/portrait-humain-sans-produit/brief.json
 ```
 
 Chaque invocation :
@@ -173,24 +163,24 @@ Par défaut `pgp-full` démarre en draft. Si la qualité est là (score QA
 
 ### Ajouter un film stock
 
-1. Crée une entrée dans `data/film-stocks.json` avec les champs `display_name`, `grain`, `color_bias`, `contrast`, `iso_native`, `gmic_clut`, `prompt_tokens`.
+1. Crée une entrée dans `.claude/data/film-stocks.json` avec les champs `display_name`, `grain`, `color_bias`, `contrast`, `iso_native`, `gmic_clut`, `prompt_tokens`.
 2. Documente dans `rules/film-stock-library.md`.
-3. Si G'MIC n'a pas d'émulation native, dépose une CLUT Hald PNG dans `data/cluts/` (voir `data/cluts/README.md`).
+3. Si G'MIC n'a pas d'émulation native, dépose une CLUT Hald PNG dans `.claude/data/cluts/` (voir `.claude/data/cluts/README.md`).
 
 ### Ajouter un appareil caméra
 
-1. Crée `data/exif-presets/<nom>.json` en suivant le format d'un existant (`sony_a7iv.json`).
+1. Crée `.claude/data/exif-presets/<nom>.json` en suivant le format d'un existant (`sony_a7iv.json`).
 2. Documente dans `rules/camera-simulation-library.md` avec `prompt_description`, `lens_characteristics`, `noise_profile`, `usage_typique`.
 3. Les scripts le picke automatiquement via `exif_inject.sh --camera <nom>`.
 
 ### Ajouter un mood de color grade
 
-1. Ajoute un branch dans `scripts/color_grade.sh → apply_gmic_mood()` avec tes commandes G'MIC.
-2. Ou dépose une CLUT Hald PNG dans `data/cluts/<mood>.png` — le script la détecte automatiquement.
+1. Ajoute un branch dans `.claude/scripts/color_grade.sh → apply_gmic_mood()` avec tes commandes G'MIC.
+2. Ou dépose une CLUT Hald PNG dans `.claude/data/cluts/<mood>.png` — le script la détecte automatiquement.
 
 ### Ajuster le pipeline
 
-L'ordre des étapes est dans `scripts/pipeline.py`. Tu peux le modifier, mais
+L'ordre des étapes est dans `.claude/scripts/pipeline.py`. Tu peux le modifier, mais
 garde **`downsample_up` en premier** (casse VAE) et **`exif_inject` en
 dernier** (sinon la réencode JPEG écrase les tags).
 
@@ -267,7 +257,7 @@ de transparence IA.
 | 503 en boucle après 5 retries                 | Quota Gemini ou modèle surchargé        | Attendre 10-30 min, revérifier la quota                 |
 | Image trop saturée                            | Stack color_grade + film_grain trop fort | Baisser `intensity` dans le shot-plan                   |
 | Score QA faible en draft                      | Prompt générique ou shot-plan incohérent | Relancer avec description plus précise                  |
-| `ModuleNotFoundError: google.genai`           | pip pas à jour                          | `pip install -r requirements.txt --upgrade`             |
+| `ModuleNotFoundError: google.genai`           | pip pas à jour                          | `pip install -r .claude/requirements.txt --upgrade`             |
 
 ---
 
@@ -301,7 +291,7 @@ R : Oui via WSL. Nativement sous PowerShell, `bash` est requis. Prévois WSL ou 
 R : Partiellement. La détection visuelle simple est efficacement contournée. La détection spectrale avancée (FFT, noise pattern, statistics) est fortement atténuée. La détection SynthID reste possible. Voir section 9.
 
 **Q : Puis-je utiliser mes propres CLUTs Lightroom ?**
-R : Oui, convertis-les en Hald PNG ou `.cube`, dépose-les dans `data/cluts/`, puis pointe-les depuis `scripts/color_grade.sh`.
+R : Oui, convertis-les en Hald PNG ou `.cube`, dépose-les dans `.claude/data/cluts/`, puis pointe-les depuis `.claude/scripts/color_grade.sh`.
 
 **Q : Comment j'ajoute un film argentique exotique ?**
 R : Voir section 8 "Customisation → Ajouter un film stock".
@@ -322,7 +312,7 @@ Procédure :
 1. Fork du repo
 2. Branche `feat/<nom-court>` ou `fix/<nom-court>`
 3. Commits en Conventional Commits (`feat:`, `fix:`, `docs:`…)
-4. Tests `./tests/test_scripts.sh` doivent passer
+4. Tests `bash .claude/tests/test_scripts.sh` doivent passer
 5. PR vers `main` avec description claire et avant/après image si possible
 
 ---
@@ -343,4 +333,4 @@ MIT. Voir `LICENSE`.
 - **google-genai** : Google, licence Apache 2.0
 
 Merci aux communautés Dust, Freepresets, RawPedia pour les LUTs libres
-référencées dans `data/cluts/README.md`.
+référencées dans `.claude/data/cluts/README.md`.

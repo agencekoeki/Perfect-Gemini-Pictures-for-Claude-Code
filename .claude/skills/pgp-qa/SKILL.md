@@ -23,7 +23,7 @@ besoin.
 2. Lancer :
 
    ```bash
-   python scripts/naturality_score.py \
+   python .claude/scripts/naturality_score.py \
      --input <image> \
      --output ./.pgp-session/qa-report.json
    ```

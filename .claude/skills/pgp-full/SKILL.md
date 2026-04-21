@@ -2,7 +2,7 @@
 name: pgp-full
 description: Pipeline complet bout-en-bout. Enchaîne brief → moodboard → shot-plan → prompt-forge → generate (draft) → postprocess → qa. Si score QA bon, propose de relancer en final. Invoquer pour une génération complète d'image naturelle Gemini. L'utilisateur peut fournir ou non une image produit de référence.
 argument-hint: [description du besoin] [--product-image PATH] [--from-brief PATH]
-allowed-tools: Read, Write, Bash(python:*), Bash(./scripts/*:*), Bash(gmic *), Bash(convert *), Bash(magick *), Bash(exiftool *), Agent(photographer), Agent(retoucher), Agent(art-director)
+allowed-tools: Read, Write, Bash(python:*), Bash(./.claude/scripts/*:*), Bash(gmic *), Bash(convert *), Bash(magick *), Bash(exiftool *), Agent(photographer), Agent(retoucher), Agent(art-director)
 ---
 
 # Skill `pgp-full` — Orchestrateur bout-en-bout
@@ -125,5 +125,5 @@ claude /pgp-full "portrait femme buvant café matinal style reel Instagram"
 claude /pgp-full "unboxing batterie Bluetti AC200 dans van aménagé matin" --product-image ./bluetti.jpg
 
 # Rejouer un exemple
-claude /pgp-full --from-brief examples/bluetti-unboxing-van/brief.json
+claude /pgp-full --from-brief .claude/examples/bluetti-unboxing-van/brief.json
 ```

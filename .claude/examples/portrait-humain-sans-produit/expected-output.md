@@ -34,7 +34,7 @@ crémeuse et le grain fin. Ambiance "slow-living éditorial Kinfolk".
 ## Lancer l'exemple
 
 ```bash
-claude /pgp-full --from-brief examples/portrait-humain-sans-produit/brief.json
+claude /pgp-full --from-brief .claude/examples/portrait-humain-sans-produit/brief.json
 ```
 
 ## Pourquoi cet exemple est intéressant

@@ -33,7 +33,7 @@ visible sur les zones plates. Palette chaude, bois clair dominant.
 ## Lancer l'exemple
 
 ```bash
-claude /pgp-full --from-brief examples/bluetti-unboxing-van/brief.json
+claude /pgp-full --from-brief .claude/examples/bluetti-unboxing-van/brief.json
 ```
 
 ## Remplacer l'image produit

@@ -31,7 +31,7 @@ check_python_pkg() {
         version="$(python3 -c "import $pkg; print(getattr($pkg, '__version__', 'n/a'))" 2>/dev/null || echo 'n/a')"
         printf "  ${GREEN}✓${RESET} %-25s v%s\n" "$pkg" "$version"
     else
-        printf "  ${RED}✗${RESET} %-25s non installé. ${YELLOW}pip install -r requirements.txt${RESET}\n" "$pkg"
+        printf "  ${RED}✗${RESET} %-25s non installé. ${YELLOW}pip install -r .claude/requirements.txt${RESET}\n" "$pkg"
         MISSING=$((MISSING + 1))
     fi
 }
@@ -76,6 +76,6 @@ if [[ $MISSING -eq 0 ]]; then
     echo -e "${GREEN}${BOLD}Toutes les dépendances sont prêtes.${RESET}"
     exit 0
 else
-    echo -e "${RED}${BOLD}$MISSING élément(s) manquant(s). Exécute ./install.sh ou installe manuellement.${RESET}"
+    echo -e "${RED}${BOLD}$MISSING élément(s) manquant(s). Exécute ./.claude/install.sh ou installe manuellement.${RESET}"
     exit 1
 fi

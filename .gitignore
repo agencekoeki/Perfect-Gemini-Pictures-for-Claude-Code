@@ -57,7 +57,7 @@ desktop.ini
 *.bak
 *.log
 
-# CLUTs téléchargés (volumineux, gérés par install.sh)
-data/cluts/*.png
-data/cluts/*.cube
-!data/cluts/README.md
+# CLUTs téléchargés (volumineux, gérés par .claude/install.sh)
+.claude/data/cluts/*.png
+.claude/data/cluts/*.cube
+!.claude/data/cluts/README.md

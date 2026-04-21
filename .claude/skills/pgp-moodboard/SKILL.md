@@ -23,10 +23,10 @@ donne à Gemini des ancres concrètes tirées de la vraie photographie lifestyle
 
 1. Lire le brief.
 2. Composer une requête de recherche à partir de `scene.environment + scene.time_of_day + tone` (ex : "photographie lifestyle van aménagé matin ensoleillé").
-3. Appeler `scripts/gemini_call.py` en mode research :
+3. Appeler `.claude/scripts/gemini_call.py` en mode research :
 
    ```bash
-   python scripts/gemini_call.py \
+   python .claude/scripts/gemini_call.py \
      --mode research \
      --query "<requête composée>" \
      --metadata-output ./.pgp-session/moodboard-raw.json
@@ -37,7 +37,7 @@ donne à Gemini des ancres concrètes tirées de la vraie photographie lifestyle
    - `palette` : 3-5 couleurs hex dominantes
    - `lighting` : description brève du type d'éclairage dominant
    - `depth_of_field` : shallow, medium, large
-   - `film_stock_suggestion` : un film depuis `data/film-stocks.json`
+   - `film_stock_suggestion` : un film depuis `.claude/data/film-stocks.json`
    - `angle` : low, eye-level, high, top-down
    - `references` : 3-5 descriptions ou URLs d'images trouvées
 6. Écrire un moodboard propre dans `./.pgp-session/moodboard.json` :
@@ -61,7 +61,7 @@ donne à Gemini des ancres concrètes tirées de la vraie photographie lifestyle
 
 ## Fallback
 
-Si `scripts/gemini_call.py --mode research` échoue (pas de clé API, erreur
+Si `.claude/scripts/gemini_call.py --mode research` échoue (pas de clé API, erreur
 503 persistante), écrire un moodboard **par défaut cohérent avec le brief**
 en utilisant les heuristiques :
 
@@ -76,7 +76,7 @@ Mentionner dans le JSON `"source": "fallback-heuristic"`.
 ## Règles
 
 - Ne jamais télécharger d'image réelle. Le moodboard est textuel.
-- Vérifier que `film_stock_suggestion` est bien une clé valide de `data/film-stocks.json`.
+- Vérifier que `film_stock_suggestion` est bien une clé valide de `.claude/data/film-stocks.json`.
 - Si la réponse Gemini n'est pas un JSON parseable, extraire au mieux les champs avec du regex simple, et loguer un warning.
 
 ## Sortie attendue

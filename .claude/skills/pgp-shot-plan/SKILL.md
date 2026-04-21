@@ -11,7 +11,7 @@ allowed-tools: Read, Write, Agent(photographer)
 Produire un **shot-plan technique complet** (framing, composition, camera
 simulation, focale, aperture, ISO, éclairage) via le subagent
 `photographer`. Ce plan est consommé par `pgp-prompt-forge` pour composer
-le prompt Gemini final, et par `scripts/pipeline.py` pour calibrer le
+le prompt Gemini final, et par `.claude/scripts/pipeline.py` pour calibrer le
 post-process.
 
 ## Pré-requis
@@ -45,8 +45,8 @@ post-process.
 
 ## Règles de validation
 
-- `camera_simulation` doit être une clé existante dans `data/exif-presets/*.json` (iphone_15_pro, sony_a7iv, canon_r5, fujifilm_xt5).
-- `film_stock` doit être une clé existante dans `data/film-stocks.json`.
+- `camera_simulation` doit être une clé existante dans `.claude/data/exif-presets/*.json` (iphone_15_pro, sony_a7iv, canon_r5, fujifilm_xt5).
+- `film_stock` doit être une clé existante dans `.claude/data/film-stocks.json`.
 - `iso` entier entre 25 et 25600.
 - `focal_length_mm` entier entre 10 et 400.
 - `aperture` string commençant par `f/`.
@@ -56,7 +56,7 @@ post-process.
 
 Fallback : composer le shot-plan directement en suivant la logique du prompt
 système du `photographer` (voir `agents/photographer.md`). Charger
-`rules/camera-physics.md` pour la cohérence ISO/aperture/scène.
+`.claude/rules/camera-physics.md` pour la cohérence ISO/aperture/scène.
 
 ## Sortie
 

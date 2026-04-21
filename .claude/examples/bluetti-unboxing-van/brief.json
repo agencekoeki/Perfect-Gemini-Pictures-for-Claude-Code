@@ -2,7 +2,7 @@
   "mode": "with-product",
   "product": {
     "name": "Bluetti AC200 Max",
-    "reference_image_path": "./examples/bluetti-unboxing-van/input_product.jpg",
+    "reference_image_path": "./.claude/examples/bluetti-unboxing-van/input_product.jpg",
     "key_features_to_preserve": [
       "logo Bluetti sur la façade",
       "écran LCD bleu",

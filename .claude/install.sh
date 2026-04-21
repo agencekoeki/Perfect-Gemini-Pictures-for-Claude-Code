@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# install.sh — Setup initial du plugin.
+# install.sh — Setup initial.
 #
-# - Installe les paquets pip depuis requirements.txt
+# - Installe les paquets pip depuis .claude/requirements.txt
 # - Télécharge optionnellement un pack de CLUTs libres (--download-cluts)
 # - Avertit si les deps système sont manquantes (mais ne les installe pas)
+#
+# Usage : ./.claude/install.sh  (depuis la racine du repo)
 
 set -euo pipefail
 
@@ -17,7 +19,7 @@ usage() {
 install.sh — Installation initiale.
 
 Options :
-  --download-cluts     Télécharge un pack de CLUTs libres dans data/cluts/.
+  --download-cluts     Télécharge un pack de CLUTs libres dans .claude/data/cluts/.
   --skip-pip           Ne réinstalle pas les paquets Python.
   -h, --help           Affiche cette aide.
 USAGE
@@ -50,7 +52,7 @@ if [[ $DOWNLOAD_CLUTS -eq 1 ]]; then
     CLUTS_DIR="${SCRIPT_DIR}/data/cluts"
     mkdir -p "$CLUTS_DIR"
     echo "Placeholder : aucun pack officiel distribué automatiquement pour éviter les problèmes de licence."
-    echo "Consulte data/cluts/README.md pour les sources libres recommandées."
+    echo "Consulte .claude/data/cluts/README.md pour les sources libres recommandées."
 fi
 
 echo ""

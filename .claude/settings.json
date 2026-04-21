@@ -1,5 +1,4 @@
 {
-  "description": "Auto-cleanup des fichiers temporaires plus vieux que 24h dans .pgp-session/stages/ après chaque exécution Bash du pipeline.",
   "hooks": {
     "PostToolUse": [
       {

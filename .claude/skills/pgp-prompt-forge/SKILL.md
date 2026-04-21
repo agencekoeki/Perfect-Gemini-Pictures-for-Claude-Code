@@ -10,9 +10,9 @@ allowed-tools: Read, Write
 
 Assembler le **prompt final** qui sera envoyé à l'API Gemini, en
 combinant brief + moodboard + shot-plan et en respectant strictement
-les règles `rules/anti-ai-vocabulary.md`, `rules/camera-physics.md`,
-`rules/lighting-coherence.md`, `rules/film-stock-library.md`,
-`rules/camera-simulation-library.md`.
+les règles `.claude/rules/anti-ai-vocabulary.md`, `.claude/rules/camera-physics.md`,
+`.claude/rules/lighting-coherence.md`, `.claude/rules/film-stock-library.md`,
+`.claude/rules/camera-simulation-library.md`.
 
 ## Pré-requis
 
@@ -23,9 +23,9 @@ les règles `rules/anti-ai-vocabulary.md`, `rules/camera-physics.md`,
 ## Déroulé
 
 1. Lire les 3 JSON.
-2. Charger les tokens prompt du film stock et du camera simulation depuis `data/film-stocks.json` et les rules correspondantes.
+2. Charger les tokens prompt du film stock et du camera simulation depuis `.claude/data/film-stocks.json` et les rules correspondantes.
 3. Appliquer le template ci-dessous.
-4. Vérifier l'absence de tokens bannis (liste dans `rules/anti-ai-vocabulary.md`) — si présents, les remplacer ou supprimer.
+4. Vérifier l'absence de tokens bannis (liste dans `.claude/rules/anti-ai-vocabulary.md`) — si présents, les remplacer ou supprimer.
 5. Écrire dans `./.pgp-session/gemini-prompt.txt`.
 
 ## Template de prompt
@@ -72,8 +72,8 @@ le sujet humain ou la nature morte.
 1. **Aucune négation en début de prompt.** Toutes les contraintes négatives vont en dernier paragraphe sous forme "Clean composition free of X, Y, Z".
 2. **Ne jamais inclure** les tokens bannis : flawless, perfect, pristine, trending on artstation, octane render, 8K, ultra HD, hyperrealistic, stunning, breathtaking, masterpiece, highly detailed.
 3. **Toujours inclure** au moins :
-   - un token "film stock precise" (copié depuis `data/film-stocks.json → prompt_tokens`)
-   - un token "camera precise" (copié depuis `rules/camera-simulation-library.md`)
+   - un token "film stock precise" (copié depuis `.claude/data/film-stocks.json → prompt_tokens`)
+   - un token "camera precise" (copié depuis `.claude/rules/camera-simulation-library.md`)
    - un token "visible imperfection" (pore density, grain, CA)
    - un token "light wrap / shadow coherence"
 4. **Formulation narrative, pas bullet list.** Le prompt se lit comme un brief humain envoyé à un assistant photographe.

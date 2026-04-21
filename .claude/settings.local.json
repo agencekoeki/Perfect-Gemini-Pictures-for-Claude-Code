@@ -5,7 +5,13 @@
       "Bash(chmod +x check-deps.sh install.sh)",
       "Bash(chmod +x tests/test_scripts.sh)",
       "Bash(bash tests/test_scripts.sh)",
-      "Bash(bash check-deps.sh)"
+      "Bash(bash check-deps.sh)",
+      "Bash(git tag -a v0.1.0 -m 'Version 0.1.0 — Scaffold complet du plugin perfect-geminini-pictures-for-claude-code *)",
+      "Bash(git tag -a v0.1.1 -m 'Version 0.1.1 - Plugin slug rename *)",
+      "Bash(mkdir -p .claude/skills .claude/agents)",
+      "Bash(mv skills/* .claude/skills/)",
+      "Bash(mv agents/*.md .claude/agents/)",
+      "Bash(bash .claude/tests/test_scripts.sh)"
     ]
   }
 }

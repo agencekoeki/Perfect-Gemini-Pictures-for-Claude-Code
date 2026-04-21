@@ -1,7 +1,7 @@
 ---
 name: pgp-postprocess
 description: Applique la cascade complète de post-processing (grain, noise, CA, vignette, color grade, JPEG cycle, EXIF injection) sur l'image brute Gemini. Invoquer après pgp-generate.
-allowed-tools: Read, Write, Bash(python:*), Bash(./scripts/*:*), Bash(gmic *), Bash(convert *), Bash(exiftool *)
+allowed-tools: Read, Write, Bash(python:*), Bash(./.claude/scripts/*:*), Bash(gmic *), Bash(convert *), Bash(exiftool *)
 ---
 
 # Skill `pgp-postprocess` — Cascade de post-processing
@@ -24,7 +24,7 @@ plastique, absence d'EXIF) et ancre l'image dans le réel.
 3. Lancer l'orchestrateur :
 
    ```bash
-   python scripts/pipeline.py \
+   python .claude/scripts/pipeline.py \
      --shot-plan ./.pgp-session/shot-plan.json \
      --input ./.pgp-session/raw-gemini.png \
      --output ./output/final-<timestamp>.jpg

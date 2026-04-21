@@ -4,6 +4,17 @@ Toutes les modifications notables de ce plugin sont documentées dans ce fichier
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.2.0] - 2026-04-21
+
+### Modifié — Migration native
+
+- Réorganisation complète : toute la donnée et tout le code vivent désormais sous `.claude/` (skills, agents, data, examples, rules, scripts, tests, requirements.txt, check-deps.sh, install.sh).
+- Suppression de la structure plugin (`skills/`, `agents/`, `.claude-plugin/plugin.json`, `hooks/hooks.json`). Le projet est désormais un "setup Claude Code natif" : les skills sont auto-découvertes via `.claude/skills/`, les hooks via `.claude/settings.json`.
+- Invocations simplifiées : `/pgp-full` au lieu de `/pgp:pgp-full`.
+- Tous les chemins internes ont été mis à jour dans SKILL.md, scripts, docs, et .gitignore.
+- Racine du repo ne contient plus que les méta fichiers (README, LICENSE, CHANGELOG, CLAUDE.md, .env*, .gitignore).
+- Smoke tests 20/20 passent après migration.
+
 ## [0.1.1] - 2026-04-21
 
 ### Modifié

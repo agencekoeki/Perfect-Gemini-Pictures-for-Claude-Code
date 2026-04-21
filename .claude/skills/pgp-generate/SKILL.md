@@ -35,7 +35,7 @@ Default : valeur de `PGP_DEFAULT_MODE` ou `draft`.
 3. Construire la commande :
 
    ```bash
-   python scripts/gemini_call.py \
+   python .claude/scripts/gemini_call.py \
      --prompt-file ./.pgp-session/gemini-prompt.txt \
      --model [flash|pro] \
      --aspect-ratio <ratio> \
